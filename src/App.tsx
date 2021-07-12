@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import ControlledInput from "./ControlledInput"
+import UnControlledInput from "./UnControlledInput"
 
 function App() {
+  const [controlledValue, setControlledValue] = useState("Foo Corp")
+  const [uncontrolledValue, setUncontrolledValue] = useState("Apples")
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ControlledInput value={controlledValue} onChange={setControlledValue} />
+      {uncontrolledValue}
+      <UnControlledInput value={uncontrolledValue} onChange={setUncontrolledValue} />
+      {uncontrolledValue === "Bananas" ? "True" : "False"}
+
+      <button type="button" onClick={() => {
+        setUncontrolledValue("Oranges")
+      }}>Fetch state</button>
     </div>
   );
 }
